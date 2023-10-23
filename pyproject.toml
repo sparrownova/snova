@@ -1,11 +1,11 @@
 [project]
-name = "sparrow-snova"
+name = "sparrow-bench"
 description = "CLI to manage Multi-tenant deployments for Sparrow apps"
 readme = "README.md"
 license = "GPL-3.0-only"
 requires-python = ">=3.7"
 authors = [
-    { name = "Sparrow Nova Pvt Ltd", email = "developers@sparrow.io" },
+    { name = "sparrownova Technplogies", email = "developers@sparrownova.com" },
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -34,13 +34,13 @@ dynamic = [
 ]
 
 [project.scripts]
-snova = "snova.cli:cli"
+bench = "bench.cli:cli"
 
 [project.urls]
 Changelog = "https://github.com/sparrownova/snova/releases"
-Documentation = "https://sparrowframework.com/docs/user/en/snova"
-Homepage = "https://sparrow.io/snova"
-Source = "https://github.com/sparrownova/snova"
+Documentation = "https://sparrownova.com/docs/user/en/bench"
+Homepage = "https://sparrownova.com/bench"
+Source = "https://github.com/sparrownova/bench"
 
 [build-system]
 requires = [
@@ -49,14 +49,14 @@ requires = [
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
-path = "snova/__init__.py"
+path = "bench/__init__.py"
 
 [tool.hatch.build.targets.sdist]
 include = [
-  "/snova"
+  "/bench"
 ]
 
 [tool.hatch.build.targets.wheel]
 include = [
-  "/snova"
+  "/bench"
 ]
