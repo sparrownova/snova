@@ -74,7 +74,7 @@ def init(
 
 	# remote apps
 	else:
-		sparrow_path = sparrow_path or "https://github.com/sparrow/sparrow.git"
+		sparrow_path = sparrow_path or "https://github.com/sparrownova/sparrow.git"
 		is_valid_sparrow_branch(sparrow_path=sparrow_path, sparrow_branch=sparrow_branch)
 		get_app(
 			sparrow_path,
@@ -199,7 +199,7 @@ def setup_fonts():
 	if os.path.exists("/etc/fonts_backup"):
 		return
 
-	exec_cmd("git clone https://github.com/sparrow/fonts.git", cwd="/tmp")
+	exec_cmd("git clone https://github.com/sparrownova/fonts.git", cwd="/tmp")
 	os.rename("/etc/fonts", "/etc/fonts_backup")
 	os.rename("/usr/share/fonts", "/usr/share/fonts_backup")
 	os.rename(os.path.join(fonts_path, "etc_fonts"), "/etc/fonts")

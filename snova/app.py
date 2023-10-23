@@ -43,7 +43,7 @@ class AppMeta:
 	def __init__(self, name: str, branch: str = None, to_clone: bool = True):
 		"""
 		name (str): This could look something like
-		        1. https://github.com/sparrow/healthcare.git
+		        1. https://github.com/sparrownova/healthcare.git
 		        2. git@github.com:sparrow/healthcare.git
 		        3. sparrow/healthcare@develop
 		        4. healthcare

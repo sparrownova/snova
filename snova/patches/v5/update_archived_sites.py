@@ -6,7 +6,7 @@ patch and try again later.
 1. Rename folder `./archived_sites` to `./archived/sites`
 2. Create a symlink `./archived_sites` => `./archived/sites`
 
-Corresponding changes in sparrow/sparrow via https://github.com/sparrow/sparrow/pull/15060
+Corresponding changes in sparrow/sparrow via https://github.com/sparrownova/sparrow/pull/15060
 """
 import os
 from pathlib import Path

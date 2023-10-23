@@ -11,7 +11,7 @@ from snova.utils import is_valid_sparrow_branch
 
 class TestUtils(unittest.TestCase):
 	def test_app_utils(self):
-		git_url = "https://github.com/sparrow/sparrow"
+		git_url = "https://github.com/sparrownova/sparrow"
 		branch = "develop"
 		app = App(name=git_url, branch=branch, snova=Snova("."))
 		self.assertTrue(
@@ -31,17 +31,17 @@ class TestUtils(unittest.TestCase):
 	def test_is_valid_sparrow_branch(self):
 		with self.assertRaises(InvalidRemoteException):
 			is_valid_sparrow_branch(
-				"https://github.com/sparrow/sparrow.git", sparrow_branch="random-branch"
+				"https://github.com/sparrownova/sparrow.git", sparrow_branch="random-branch"
 			)
 			is_valid_sparrow_branch(
 				"https://github.com/random/random.git", sparrow_branch="random-branch"
 			)
 
 		is_valid_sparrow_branch(
-			"https://github.com/sparrow/sparrow.git", sparrow_branch="develop"
+			"https://github.com/sparrownova/sparrow.git", sparrow_branch="develop"
 		)
 		is_valid_sparrow_branch(
-			"https://github.com/sparrow/sparrow.git", sparrow_branch="v13.29.0"
+			"https://github.com/sparrownova/sparrow.git", sparrow_branch="v13.29.0"
 		)
 
 	def test_app_states(self):

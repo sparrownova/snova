@@ -37,10 +37,10 @@ dynamic = [
 snova = "snova.cli:cli"
 
 [project.urls]
-Changelog = "https://github.com/sparrow/snova/releases"
+Changelog = "https://github.com/sparrownova/snova/releases"
 Documentation = "https://sparrowframework.com/docs/user/en/snova"
 Homepage = "https://sparrow.io/snova"
-Source = "https://github.com/sparrow/snova"
+Source = "https://github.com/sparrownova/snova"
 
 [build-system]
 requires = [

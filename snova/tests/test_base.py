@@ -104,7 +104,7 @@ class TestSnovaBase(unittest.TestCase):
 
 		if not os.path.exists(sparrow_tmp_path):
 			exec_cmd(
-				f"git clone https://github.com/sparrow/sparrow -b {SPARROW_BRANCH} --depth 1 --origin upstream {sparrow_tmp_path}"
+				f"git clone https://github.com/sparrownova/sparrow -b {SPARROW_BRANCH} --depth 1 --origin upstream {sparrow_tmp_path}"
 			)
 
 		kwargs.update(
@@ -119,7 +119,7 @@ class TestSnovaBase(unittest.TestCase):
 		if not os.path.exists(os.path.join(self.snovaes_path, snova_name)):
 			init(snova_name, **kwargs)
 			exec_cmd(
-				"git remote set-url upstream https://github.com/sparrow/sparrow",
+				"git remote set-url upstream https://github.com/sparrownova/sparrow",
 				cwd=os.path.join(self.snovaes_path, snova_name, "apps", "sparrow"),
 			)
 
