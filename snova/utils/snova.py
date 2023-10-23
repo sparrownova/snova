@@ -53,9 +53,9 @@ def update_node_packages(snova_path=".", apps=None):
 
 	from snova.utils.app import get_develop_version
 
-	v = LooseVersion(get_develop_version("frappe", snova_path=snova_path))
+	v = LooseVersion(get_develop_version("sparrow", snova_path=snova_path))
 
-	# After rollup was merged, frappe_version = 10.1
+	# After rollup was merged, sparrow_version = 10.1
 	# if develop_verion is 11 and up, only then install yarn
 	if v < LooseVersion("11.x.x-develop"):
 		update_npm_packages(snova_path, apps=apps)
@@ -225,10 +225,10 @@ def migrate_env(python, backup=False):
 		logger.log(f"Setting up a New Virtual {python} Environment")
 		exec_cmd(f"{python} -m venv {pvenv}")
 
-		# Install frappe first
-		_install_app("frappe")
+		# Install sparrow first
+		_install_app("sparrow")
 		for app in snova.apps:
-			if str(app) != "frappe":
+			if str(app) != "sparrow":
 				_install_app(app)
 
 		logger.log(f"Migration Successful to {python}")
@@ -316,7 +316,7 @@ def restart_supervisor_processes(snova_path=".", web_workers=False, _raise=False
 
 		# backward compatibility
 		else:
-			group = "frappe:"
+			group = "sparrow:"
 
 		failure = snova.run(f"{sudo}supervisorctl restart {group}", _raise=_raise)
 		if failure:
@@ -357,13 +357,13 @@ def handle_version_upgrade(version_upgrade, snova_path, force, reset, conf):
 	if version_upgrade[0]:
 		if force:
 			log(
-				"""Force flag has been used for a major version change in Frappe and it's apps.
+				"""Force flag has been used for a major version change in Sparrow and it's apps.
 This will take significant time to migrate and might break custom apps.""",
 				level=3,
 			)
 		else:
 			print(
-				f"""This update will cause a major version change in Frappe/SHOPPER from {version_upgrade[1]} to {version_upgrade[2]}.
+				f"""This update will cause a major version change in Sparrow/SHOPPER from {version_upgrade[1]} to {version_upgrade[2]}.
 This would take significant time to migrate and might break custom apps."""
 			)
 			click.confirm("Do you want to continue?", abort=True)
@@ -462,8 +462,8 @@ def update(
 	update_config(conf, snova_path=snova_path)
 
 	print(
-		"_" * 80 + "\nSnova: Deployment tool for Frappe and Frappe Applications"
-		" (https://frappe.io/snova).\nOpen source depends on your contributions, so do"
+		"_" * 80 + "\nSnova: Deployment tool for Sparrow and Sparrow Applications"
+		" (https://sparrow.io/snova).\nOpen source depends on your contributions, so do"
 		" give back by submitting bug reports, patches and fixes and be a part of the"
 		" community :)"
 	)
@@ -517,7 +517,7 @@ def remove_backups_crontab(snova_path="."):
 	logger.log("removing backup cronjob")
 
 	snova_dir = os.path.abspath(snova_path)
-	user = Snova(snova_dir).conf.get("frappe_user")
+	user = Snova(snova_dir).conf.get("sparrow_user")
 	logfile = os.path.join(snova_dir, "logs", "backup.log")
 	system_crontab = CronTab(user=user)
 	backup_command = f"cd {snova_dir} && {sys.argv[0]} --verbose --site all backup"
@@ -608,7 +608,7 @@ def validate_branch():
 	apps = Snova(".").apps
 
 	installed_apps = set(apps)
-	check_apps = {"frappe", "shopper"}
+	check_apps = {"sparrow", "shopper"}
 	intersection_apps = installed_apps.intersection(check_apps)
 
 	for app in intersection_apps:
@@ -618,7 +618,7 @@ def validate_branch():
 			print(
 				"""'master' branch is renamed to 'version-11' since 'version-12' release.
 As of January 2020, the following branches are
-version		Frappe			SHOPPER
+version		Sparrow			SHOPPER
 11		version-11		version-11
 12		version-12		version-12
 13		version-13		version-13

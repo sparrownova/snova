@@ -53,17 +53,17 @@ def generate_systemd_config(
 	background_workers = []
 	for i in range(number_of_workers):
 		background_workers.append(
-			get_snova_name(snova_path) + "-frappe-default-worker@" + str(i + 1) + ".service"
+			get_snova_name(snova_path) + "-sparrow-default-worker@" + str(i + 1) + ".service"
 		)
 
 	for i in range(number_of_workers):
 		background_workers.append(
-			get_snova_name(snova_path) + "-frappe-short-worker@" + str(i + 1) + ".service"
+			get_snova_name(snova_path) + "-sparrow-short-worker@" + str(i + 1) + ".service"
 		)
 
 	for i in range(number_of_workers):
 		background_workers.append(
-			get_snova_name(snova_path) + "-frappe-long-worker@" + str(i + 1) + ".service"
+			get_snova_name(snova_path) + "-sparrow-long-worker@" + str(i + 1) + ".service"
 		)
 
 	web_worker_count = config.get(
@@ -115,7 +115,7 @@ def setup_systemd_directory(snova_path):
 
 def setup_main_config(snova_info, snova_path):
 	# Main config
-	snova_template = snova.config.env().get_template("systemd/frappe-snova.target")
+	snova_template = snova.config.env().get_template("systemd/sparrow-snova.target")
 	snova_config = snova_template.render(**snova_info)
 	snova_config_path = os.path.join(
 		snova_path, "config", "systemd", snova_info.get("snova_name") + ".target"
@@ -128,19 +128,19 @@ def setup_main_config(snova_info, snova_path):
 def setup_workers_config(snova_info, snova_path):
 	# Worker Group
 	snova_workers_target_template = snova.config.env().get_template(
-		"systemd/frappe-snova-workers.target"
+		"systemd/sparrow-snova-workers.target"
 	)
 	snova_default_worker_template = snova.config.env().get_template(
-		"systemd/frappe-snova-frappe-default-worker.service"
+		"systemd/sparrow-snova-sparrow-default-worker.service"
 	)
 	snova_short_worker_template = snova.config.env().get_template(
-		"systemd/frappe-snova-frappe-short-worker.service"
+		"systemd/sparrow-snova-sparrow-short-worker.service"
 	)
 	snova_long_worker_template = snova.config.env().get_template(
-		"systemd/frappe-snova-frappe-long-worker.service"
+		"systemd/sparrow-snova-sparrow-long-worker.service"
 	)
 	snova_schedule_worker_template = snova.config.env().get_template(
-		"systemd/frappe-snova-frappe-schedule.service"
+		"systemd/sparrow-snova-sparrow-schedule.service"
 	)
 
 	snova_workers_target_config = snova_workers_target_template.render(**snova_info)
@@ -156,25 +156,25 @@ def setup_workers_config(snova_info, snova_path):
 		snova_path,
 		"config",
 		"systemd",
-		snova_info.get("snova_name") + "-frappe-default-worker@.service",
+		snova_info.get("snova_name") + "-sparrow-default-worker@.service",
 	)
 	snova_short_worker_config_path = os.path.join(
 		snova_path,
 		"config",
 		"systemd",
-		snova_info.get("snova_name") + "-frappe-short-worker@.service",
+		snova_info.get("snova_name") + "-sparrow-short-worker@.service",
 	)
 	snova_long_worker_config_path = os.path.join(
 		snova_path,
 		"config",
 		"systemd",
-		snova_info.get("snova_name") + "-frappe-long-worker@.service",
+		snova_info.get("snova_name") + "-sparrow-long-worker@.service",
 	)
 	snova_schedule_worker_config_path = os.path.join(
 		snova_path,
 		"config",
 		"systemd",
-		snova_info.get("snova_name") + "-frappe-schedule.service",
+		snova_info.get("snova_name") + "-sparrow-schedule.service",
 	)
 
 	with open(snova_workers_target_config_path, "w") as f:
@@ -196,13 +196,13 @@ def setup_workers_config(snova_info, snova_path):
 def setup_web_config(snova_info, snova_path):
 	# Web Group
 	snova_web_target_template = snova.config.env().get_template(
-		"systemd/frappe-snova-web.target"
+		"systemd/sparrow-snova-web.target"
 	)
 	snova_web_service_template = snova.config.env().get_template(
-		"systemd/frappe-snova-frappe-web.service"
+		"systemd/sparrow-snova-sparrow-web.service"
 	)
 	snova_node_socketio_template = snova.config.env().get_template(
-		"systemd/frappe-snova-node-socketio.service"
+		"systemd/sparrow-snova-node-socketio.service"
 	)
 
 	snova_web_target_config = snova_web_target_template.render(**snova_info)
@@ -213,7 +213,7 @@ def setup_web_config(snova_info, snova_path):
 		snova_path, "config", "systemd", snova_info.get("snova_name") + "-web.target"
 	)
 	snova_web_service_config_path = os.path.join(
-		snova_path, "config", "systemd", snova_info.get("snova_name") + "-frappe-web.service"
+		snova_path, "config", "systemd", snova_info.get("snova_name") + "-sparrow-web.service"
 	)
 	snova_node_socketio_config_path = os.path.join(
 		snova_path,
@@ -235,13 +235,13 @@ def setup_web_config(snova_info, snova_path):
 def setup_redis_config(snova_info, snova_path):
 	# Redis Group
 	snova_redis_target_template = snova.config.env().get_template(
-		"systemd/frappe-snova-redis.target"
+		"systemd/sparrow-snova-redis.target"
 	)
 	snova_redis_cache_template = snova.config.env().get_template(
-		"systemd/frappe-snova-redis-cache.service"
+		"systemd/sparrow-snova-redis-cache.service"
 	)
 	snova_redis_queue_template = snova.config.env().get_template(
-		"systemd/frappe-snova-redis-queue.service"
+		"systemd/sparrow-snova-redis-queue.service"
 	)
 
 	snova_redis_target_config = snova_redis_target_template.render(**snova_info)
@@ -297,11 +297,11 @@ def get_unit_files(snova_path):
 		[snova_name + "-workers", ".target"],
 		[snova_name + "-web", ".target"],
 		[snova_name + "-redis", ".target"],
-		[snova_name + "-frappe-default-worker@", ".service"],
-		[snova_name + "-frappe-short-worker@", ".service"],
-		[snova_name + "-frappe-long-worker@", ".service"],
-		[snova_name + "-frappe-schedule", ".service"],
-		[snova_name + "-frappe-web", ".service"],
+		[snova_name + "-sparrow-default-worker@", ".service"],
+		[snova_name + "-sparrow-short-worker@", ".service"],
+		[snova_name + "-sparrow-long-worker@", ".service"],
+		[snova_name + "-sparrow-schedule", ".service"],
+		[snova_name + "-sparrow-web", ".service"],
 		[snova_name + "-node-socketio", ".service"],
 		[snova_name + "-redis-cache", ".service"],
 		[snova_name + "-redis-queue", ".service"],

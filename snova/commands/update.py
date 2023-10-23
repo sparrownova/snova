@@ -95,7 +95,7 @@ def switch_to_branch(branch, apps, upgrade=False):
 
 @click.command("switch-to-develop")
 def switch_to_develop(upgrade=False):
-	"Switch frappe and shopper to develop branch"
+	"Switch sparrow and shopper to develop branch"
 	from snova.utils.app import switch_to_develop
 
-	switch_to_develop(apps=["frappe", "shopper"])
+	switch_to_develop(apps=["sparrow", "shopper"])

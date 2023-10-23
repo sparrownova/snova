@@ -18,10 +18,10 @@ def remote_set_url(git_url):
 	set_git_remote_url(git_url)
 
 
-@click.command('remote-reset-url', help="Reset app remote url to frappe official")
+@click.command('remote-reset-url', help="Reset app remote url to sparrow official")
 @click.argument('app')
 def remote_reset_url(app):
-	git_url = f"https://github.com/frappenova/{app}.git"
+	git_url = f"https://github.com/sparrownova/{app}.git"
 	set_git_remote_url(git_url)
 
 
