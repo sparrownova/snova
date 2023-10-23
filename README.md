@@ -1,35 +1,3 @@
-Metadata-Version: 2.1
-Name: sparrow-snova
-Version: 5.18.0
-Summary: CLI to manage Multi-tenant deployments for Sparrow apps
-Project-URL: Changelog, https://github.com/sparrownova/snova/releases
-Project-URL: Documentation, https://sparrowframework.com/docs/user/en/snova
-Project-URL: Homepage, https://sparrow.io/snova
-Project-URL: Source, https://github.com/sparrownova/snova
-Author-email: Sparrow Nova Pvt Ltd <developers@sparrow.io>
-License-Expression: GPL-3.0-only
-License-File: LICENSE
-Classifier: Development Status :: 5 - Production/Stable
-Classifier: Environment :: Console
-Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
-Classifier: Natural Language :: English
-Classifier: Operating System :: MacOS
-Classifier: Operating System :: OS Independent
-Classifier: Topic :: Software Development :: Build Tools
-Classifier: Topic :: Software Development :: User Interfaces
-Classifier: Topic :: System :: Installation/Setup
-Requires-Python: >=3.7
-Requires-Dist: click>=7.0
-Requires-Dist: gitpython~=3.1.30
-Requires-Dist: honcho
-Requires-Dist: jinja2~=3.0.3
-Requires-Dist: python-crontab~=2.6.0
-Requires-Dist: requests
-Requires-Dist: semantic-version~=2.8.2
-Requires-Dist: setuptools>40.9.0
-Requires-Dist: tomli; python_version < '3.11'
-Description-Content-Type: text/markdown
-
 <div align="center">
 	<img src="https://github.com/sparrownova/design/raw/master/logos/png/snova-logo.png" height="128">
 	<h2>Snova</h2>
