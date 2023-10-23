@@ -5,58 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12b879a5-18fc-4dcf-b2a7-148f5f2bab8a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/PKG-INFO" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/__init__.pyr" beforeDir="false" afterPath="$PROJECT_DIR$/snova/__init__.pyr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/snova/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/commands/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/commands/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/commands/git.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/commands/git.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/commands/install.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/commands/install.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/commands/make.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/commands/make.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/commands/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/commands/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/commands/update.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/commands/update.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/commands/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/commands/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/common_site_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/common_site_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/production_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/production_setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/supervisor.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/supervisor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/systemd.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/systemd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/snova_manager_nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/snova_manager_nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/sparrow_sudoers" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/sparrow_sudoers" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/supervisor.conf" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/supervisor.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-node-socketio.service" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-node-socketio.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-default-worker.service" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-default-worker.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-long-worker.service" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-long-worker.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-schedule.service" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-schedule.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-short-worker.service" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-short-worker.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-web.service" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-sparrow-web.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-web.target" beforeDir="false" afterPath="$PROJECT_DIR$/snova/config/templates/systemd/sparrow-snova-web.target" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/patches/v5/fix_backup_cronjob.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/patches/v5/fix_backup_cronjob.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/patches/v5/fix_user_permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/patches/v5/fix_user_permissions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/snova/patches/v5/update_archived_sites.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/patches/v5/update_archived_sites.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/playbooks/create_user.yml" beforeDir="false" afterPath="$PROJECT_DIR$/snova/playbooks/create_user.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/playbooks/macosx.yml" beforeDir="false" afterPath="$PROJECT_DIR$/snova/playbooks/macosx.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/playbooks/roles/bench/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/snova/playbooks/roles/bench/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/playbooks/roles/bench/tasks/setup_snova_production.yml" beforeDir="false" afterPath="$PROJECT_DIR$/snova/playbooks/roles/bench/tasks/setup_snova_production.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/playbooks/roles/common/tasks/macos.yml" beforeDir="false" afterPath="$PROJECT_DIR$/snova/playbooks/roles/common/tasks/macos.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/playbooks/roles/frappe_selinux/files/sparrow_selinux.te" beforeDir="false" afterPath="$PROJECT_DIR$/snova/playbooks/roles/frappe_selinux/files/sparrow_selinux.te" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/playbooks/roles/frappe_selinux/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/snova/playbooks/roles/frappe_selinux/tasks/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/playbooks/site.yml" beforeDir="false" afterPath="$PROJECT_DIR$/snova/playbooks/site.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/snova.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/snova.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/snova/tests/test_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/tests/test_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/tests/test_init.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/tests/test_init.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/tests/test_setup_production.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/tests/test_setup_production.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/snova/tests/test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/tests/test_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/utils/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/utils/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/utils/snova.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/utils/snova.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/snova/utils/system.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/utils/system.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/snova/utils/translation.py" beforeDir="false" afterPath="$PROJECT_DIR$/snova/utils/translation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

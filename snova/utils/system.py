@@ -74,7 +74,7 @@ def init(
 
 	# remote apps
 	else:
-		frappe_path = frappe_path or "https://github.com/frappenova/frappe.git"
+		frappe_path = frappe_path or "https://github.com/sparrownova/sparrow.git"
 		is_valid_frappe_branch(frappe_path=frappe_path, frappe_branch=frappe_branch)
 		get_app(
 			frappe_path,
@@ -199,7 +199,7 @@ def setup_fonts():
 	if os.path.exists("/etc/fonts_backup"):
 		return
 
-	exec_cmd("git clone https://github.com/frappenova/fonts.git", cwd="/tmp")
+	exec_cmd("git clonehttps://github.com/sparrownova/fonts.git", cwd="/tmp")
 	os.rename("/etc/fonts", "/etc/fonts_backup")
 	os.rename("/usr/share/fonts", "/usr/share/fonts_backup")
 	os.rename(os.path.join(fonts_path, "etc_fonts"), "/etc/fonts")
