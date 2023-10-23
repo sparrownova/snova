@@ -66,17 +66,17 @@ A Frappe/SHOPPER instance can be setup and replicated easily using [Docker](http
 To setup either of the environments, you will need to clone the official docker repository:
 
 ```sh
-$ git clone https://github.com/sparrownova/sparrow_docker.git
+$ git clone https://github.com/frappenova/frappe_docker.git
 $ cd frappe_docker
 ```
 
-A quick setup guide for both the environments can be found below. For more details, check out the [Frappe/SHOPPER Docker Repository](https://github.com/sparrownova/sparrow_docker).
+A quick setup guide for both the environments can be found below. For more details, check out the [Frappe/SHOPPER Docker Repository](https://github.com/frappenova/frappe_docker).
 
 ### Easy Install Script
 
 The Easy Install script should get you going with a Frappe/SHOPPER setup with minimal manual intervention and effort.
 
-This script uses Docker with the [Frappe/SHOPPER Docker Repository](https://github.com/sparrownova/sparrow_docker) and can be used for both Development setup and Production setup.
+This script uses Docker with the [Frappe/SHOPPER Docker Repository](https://github.com/frappenova/frappe_docker) and can be used for both Development setup and Production setup.
 
 #### Setup
 
@@ -217,7 +217,7 @@ To contribute and develop on the snova CLI tool, clone this repo and create an e
 
 
 ```sh
-$ git clonehttps://github.com/sparrownova/snova ~/snova-repo
+$ git clone https://github.com/frappenova/snova ~/snova-repo
 $ pip3 install -e ~/snova-repo
 $ snova src
 /Users/frappe/snova-repo
@@ -242,7 +242,7 @@ To confirm the switch, check the output of `snova src`. It should change from so
 
 Snova's version information can be accessed via `snova.VERSION` in the package's __init__.py file. Eversince the v5.0 release, we've started publishing releases on GitHub, and PyPI.
 
-GitHub:https://github.com/sparrownova/snova/releases
+GitHub: https://github.com/frappenova/snova/releases
 
 PyPI: https://pypi.org/project/frappe-snova
 
