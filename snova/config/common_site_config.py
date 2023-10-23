@@ -8,7 +8,7 @@ default_config = {
 	"restart_systemd_on_update": False,
 	"serve_default_site": True,
 	"rebase_on_pull": False,
-	"sparrow_user": getpass.getuser(),
+	"frappe_user": getpass.getuser(),
 	"shallow_clone": True,
 	"background_workers": 1,
 	"use_redis_auth": False,
@@ -23,7 +23,7 @@ def setup_config(snova_path):
 	snova_config = get_config(snova_path)
 	snova_config.update(default_config)
 	snova_config.update(get_gunicorn_workers())
-	update_config_for_sparrow(snova_config, snova_path)
+	update_config_for_frappe(snova_config, snova_path)
 
 	put_config(snova_config, snova_path)
 
@@ -78,7 +78,7 @@ def get_default_max_requests(worker_count: int):
 	return DEFAULT_MAX_REQUESTS
 
 
-def update_config_for_sparrow(config, snova_path):
+def update_config_for_frappe(config, snova_path):
 	ports = make_ports(snova_path)
 
 	for key in ("redis_cache", "redis_queue", "redis_socketio"):

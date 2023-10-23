@@ -17,7 +17,7 @@ from snova.exceptions import (
 from snova.app import get_repo_dir
 
 
-def is_version_upgrade(app="sparrow", snova_path=".", branch=None):
+def is_version_upgrade(app="frappe", snova_path=".", branch=None):
 	upstream_version = get_upstream_version(app=app, branch=branch, snova_path=snova_path)
 
 	if not upstream_version:
@@ -161,9 +161,9 @@ def get_upstream_version(app, branch=None, snova_path="."):
 	return get_version_from_string(contents)
 
 
-def get_current_sparrow_version(snova_path="."):
+def get_current_frappe_version(snova_path="."):
 	try:
-		return get_major_version(get_current_version("sparrow", snova_path=snova_path))
+		return get_major_version(get_current_version("frappe", snova_path=snova_path))
 	except OSError:
 		return 0
 

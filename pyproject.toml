@@ -1,11 +1,11 @@
 [project]
-name = "sparrow-snova"
-description = "CLI to manage Multi-tenant deployments for Sparrow apps"
+name = "frappe-snova"
+description = "CLI to manage Multi-tenant deployments for Frappe apps"
 readme = "README.md"
 license = "GPL-3.0-only"
 requires-python = ">=3.7"
 authors = [
-    { name = "Sparrow Nova Pvt Ltd", email = "developers@sparrow.io" },
+    { name = "Frappe Nova Pvt Ltd", email = "developers@frappe.io" },
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -37,10 +37,10 @@ dynamic = [
 snova = "snova.cli:cli"
 
 [project.urls]
-Changelog = "https://github.com/sparrownova/snova/releases"
-Documentation = "https://sparrowframework.com/docs/user/en/snova"
-Homepage = "https://sparrow.io/snova"
-Source = "https://github.com/sparrownova/snova"
+Changelog = "https://github.com/frappenova/snova/releases"
+Documentation = "https://frappeframework.com/docs/user/en/snova"
+Homepage = "https://frappe.io/snova"
+Source = "https://github.com/frappenova/snova"
 
 [build-system]
 requires = [

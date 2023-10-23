@@ -1,25 +1,25 @@
 <div align="center">
-	<img src="https://github.com/sparrownova/design/raw/master/logos/png/snova-logo.png" height="128">
+	<img src="https://github.com/frappenova/design/raw/master/logos/png/snova-logo.png" height="128">
 	<h2>Snova</h2>
 </div>
 
-Snova is a command-line utility that helps you to install, update, and manage multiple sites for Sparrow/SHOPPER applications on [*nix systems](https://en.wikipedia.org/wiki/Unix-like) for development and production.
+Snova is a command-line utility that helps you to install, update, and manage multiple sites for Frappe/SHOPPER applications on [*nix systems](https://en.wikipedia.org/wiki/Unix-like) for development and production.
 
 <div align="center">
 	<a target="_blank" href="https://www.python.org/downloads/" title="Python version">
 		<img src="https://img.shields.io/badge/python-%3E=_3.7-green.svg">
 	</a>
-	<a target="_blank" href="https://app.travis-ci.com/github/sparrow/snova" title="CI Status">
-		<img src="https://app.travis-ci.com/sparrow/snova.svg?branch=develop">
+	<a target="_blank" href="https://app.travis-ci.com/github/frappe/snova" title="CI Status">
+		<img src="https://app.travis-ci.com/frappe/snova.svg?branch=develop">
 	</a>
-	<a target="_blank" href="https://pypi.org/project/sparrow-snova" title="PyPI Version">
-		<img src="https://badge.fury.io/py/sparrow-snova.svg" alt="PyPI version">
+	<a target="_blank" href="https://pypi.org/project/frappe-snova" title="PyPI Version">
+		<img src="https://badge.fury.io/py/frappe-snova.svg" alt="PyPI version">
 	</a>
 	<a target="_blank" title="Platform Compatibility">
 		<img src="https://img.shields.io/badge/platform-linux%20%7C%20osx-blue">
 	</a>
-	<a target="_blank" href="https://app.fossa.com/projects/git%2Bgithub.com%2Fsparrow%2Fsnova?ref=badge_shield" title="FOSSA Status">
-		<img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsparrow%2Fsnova.svg?type=shield">
+	<a target="_blank" href="https://app.fossa.com/projects/git%2Bgithub.com%2Ffrappe%2Fsnova?ref=badge_shield" title="FOSSA Status">
+		<img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffrappe%2Fsnova.svg?type=shield">
 	</a>
 	<a target="_blank" href="#LICENSE" title="License: GPLv3">
 		<img src="https://img.shields.io/badge/License-GPLv3-blue.svg">
@@ -56,40 +56,40 @@ The setup for each of these installations can be achieved in multiple ways:
 
 We recommend using Docker Installation to setup a Production Environment. For Development, you may choose either of the two methods to setup an instance.
 
-Otherwise, if you are looking to evaluate Sparrow apps without hassle of hosting, you can try them [on sparrowcloud.com](https://sparrowcloud.com/).
+Otherwise, if you are looking to evaluate Frappe apps without hassle of hosting, you can try them [on frappecloud.com](https://frappecloud.com/).
 
 
 ### Containerized Installation
 
-A Sparrow/SHOPPER instance can be setup and replicated easily using [Docker](https://docker.com). The officially supported Docker installation can be used to setup either of both Development and Production environments.
+A Frappe/SHOPPER instance can be setup and replicated easily using [Docker](https://docker.com). The officially supported Docker installation can be used to setup either of both Development and Production environments.
 
 To setup either of the environments, you will need to clone the official docker repository:
 
 ```sh
-$ git clone https://github.com/sparrownova/sparrow_docker.git
-$ cd sparrow_docker
+$ git clone https://github.com/frappenova/frappe_docker.git
+$ cd frappe_docker
 ```
 
-A quick setup guide for both the environments can be found below. For more details, check out the [Sparrow/SHOPPER Docker Repository](https://github.com/sparrownova/sparrow_docker).
+A quick setup guide for both the environments can be found below. For more details, check out the [Frappe/SHOPPER Docker Repository](https://github.com/frappenova/frappe_docker).
 
 ### Easy Install Script
 
-The Easy Install script should get you going with a Sparrow/SHOPPER setup with minimal manual intervention and effort.
+The Easy Install script should get you going with a Frappe/SHOPPER setup with minimal manual intervention and effort.
 
-This script uses Docker with the [Sparrow/SHOPPER Docker Repository](https://github.com/sparrownova/sparrow_docker) and can be used for both Development setup and Production setup.
+This script uses Docker with the [Frappe/SHOPPER Docker Repository](https://github.com/frappenova/frappe_docker) and can be used for both Development setup and Production setup.
 
 #### Setup
 
 Download the Easy Install script and execute it:
 
 ```sh
-$ wget https://raw.githubusercontent.com/sparrow/snova/develop/easy-install.py
+$ wget https://raw.githubusercontent.com/frappe/snova/develop/easy-install.py
 $ python3 easy-install.py --prod --email your@email.tld
 ```
 
 This script will install docker on your system and will fetch the required containers, setup snova and a default SHOPPER instance.
 
-The script will generate MySQL root password and an Administrator password for the Sparrow/SHOPPER instance, which will then be saved under `$HOME/passwords.txt` of the user used to setup the instance.
+The script will generate MySQL root password and an Administrator password for the Frappe/SHOPPER instance, which will then be saved under `$HOME/passwords.txt` of the user used to setup the instance.
 It will also generate a new compose file under `$HOME/<project-name>-compose.yml`.
 
 When the setup is complete, you will be able to access the system at `http://<your-server-ip>`, wherein you can use the Administrator password to login.
@@ -101,7 +101,7 @@ Here are the arguments for the easy-install script
 ```txt
 usage: easy-install.py [-h] [-p] [-d] [-s SITENAME] [-n PROJECT] [--email EMAIL]
 
-Install Sparrow with Docker
+Install Frappe with Docker
 
 options:
   -h, --help            		show this help message and exit
@@ -120,13 +120,13 @@ In case the setup fails, the log file is saved under `$HOME/easy-install.log`. Y
 
 ### Manual Installation
 
-Some might want to manually setup a snova instance locally for development. To quickly get started on installing snova the hard way, you can follow the guide on [Installing Snova and the Sparrow Framework](https://sparrow.io/docs/user/en/installation).
+Some might want to manually setup a snova instance locally for development. To quickly get started on installing snova the hard way, you can follow the guide on [Installing Snova and the Frappe Framework](https://frappe.io/docs/user/en/installation).
 
-You'll have to set up the system dependencies required for setting up a Sparrow Environment. Checkout [docs/installation](https://github.com/sparrownova/snova/blob/develop/docs/installation.md) for more information on this. If you've already set up, install snova via pip:
+You'll have to set up the system dependencies required for setting up a Frappe Environment. Checkout [docs/installation](https://github.com/frappenova/snova/blob/develop/docs/installation.md) for more information on this. If you've already set up, install snova via pip:
 
 
 ```sh
-$ pip install sparrow-snova
+$ pip install frappe-snova
 ```
 
 
@@ -176,35 +176,35 @@ $ pip install sparrow-snova
 	```
 
 
-For more in-depth information on commands and their usage, follow [Commands and Usage](https://github.com/sparrownova/snova/blob/develop/docs/commands_and_usage.md). As for a consolidated list of snova commands, check out [Snova Usage](https://github.com/sparrownova/snova/blob/develop/docs/snova_usage.md).
+For more in-depth information on commands and their usage, follow [Commands and Usage](https://github.com/frappenova/snova/blob/develop/docs/commands_and_usage.md). As for a consolidated list of snova commands, check out [Snova Usage](https://github.com/frappenova/snova/blob/develop/docs/snova_usage.md).
 
 
 ## Custom Snova Commands
 
-If you wish to extend the capabilities of snova with your own custom Sparrow Application, you may follow [Adding Custom Snova Commands](https://github.com/sparrownova/snova/blob/develop/docs/snova_custom_cmd.md).
+If you wish to extend the capabilities of snova with your own custom Frappe Application, you may follow [Adding Custom Snova Commands](https://github.com/frappenova/snova/blob/develop/docs/snova_custom_cmd.md).
 
 
 ## Guides
 
-- [Configuring HTTPS](https://sparrow.io/docs/user/en/snova/guides/configuring-https.html)
-- [Using Let's Encrypt to setup HTTPS](https://sparrow.io/docs/user/en/snova/guides/lets-encrypt-ssl-setup.html)
-- [Diagnosing the Scheduler](https://sparrow.io/docs/user/en/snova/guides/diagnosing-the-scheduler.html)
-- [Change Hostname](https://sparrow.io/docs/user/en/snova/guides/adding-custom-domains)
-- [Manual Setup](https://sparrow.io/docs/user/en/snova/guides/manual-setup.html)
-- [Setup Production](https://sparrow.io/docs/user/en/snova/guides/setup-production.html)
-- [Setup Multitenancy](https://sparrow.io/docs/user/en/snova/guides/setup-multitenancy.html)
-- [Stopping Production](https://github.com/sparrownova/snova/wiki/Stopping-Production-and-starting-Development)
+- [Configuring HTTPS](https://frappe.io/docs/user/en/snova/guides/configuring-https.html)
+- [Using Let's Encrypt to setup HTTPS](https://frappe.io/docs/user/en/snova/guides/lets-encrypt-ssl-setup.html)
+- [Diagnosing the Scheduler](https://frappe.io/docs/user/en/snova/guides/diagnosing-the-scheduler.html)
+- [Change Hostname](https://frappe.io/docs/user/en/snova/guides/adding-custom-domains)
+- [Manual Setup](https://frappe.io/docs/user/en/snova/guides/manual-setup.html)
+- [Setup Production](https://frappe.io/docs/user/en/snova/guides/setup-production.html)
+- [Setup Multitenancy](https://frappe.io/docs/user/en/snova/guides/setup-multitenancy.html)
+- [Stopping Production](https://github.com/frappenova/snova/wiki/Stopping-Production-and-starting-Development)
 
-For an exhaustive list of guides, check out [Snova Guides](https://sparrow.io/docs/user/en/snova/guides).
+For an exhaustive list of guides, check out [Snova Guides](https://frappe.io/docs/user/en/snova/guides).
 
 
 ## Resources
 
-- [Snova Commands Cheat Sheet](https://sparrow.io/docs/user/en/snova/resources/snova-commands-cheatsheet.html)
-- [Background Services](https://sparrow.io/docs/user/en/snova/resources/background-services.html)
-- [Snova Procfile](https://sparrow.io/docs/user/en/snova/resources/snova-procfile.html)
+- [Snova Commands Cheat Sheet](https://frappe.io/docs/user/en/snova/resources/snova-commands-cheatsheet.html)
+- [Background Services](https://frappe.io/docs/user/en/snova/resources/background-services.html)
+- [Snova Procfile](https://frappe.io/docs/user/en/snova/resources/snova-procfile.html)
 
-For an exhaustive list of resources, check out [Snova Resources](https://sparrow.io/docs/user/en/snova/resources).
+For an exhaustive list of resources, check out [Snova Resources](https://frappe.io/docs/user/en/snova/resources).
 
 
 ## Development
@@ -213,14 +213,14 @@ To contribute and develop on the snova CLI tool, clone this repo and create an e
 
 	WARN: snova is installed in editable mode!
 
-	This is not the recommended mode of installation for production. Instead, install the package from PyPI with: `pip install sparrow-snova`
+	This is not the recommended mode of installation for production. Instead, install the package from PyPI with: `pip install frappe-snova`
 
 
 ```sh
-$ git clone https://github.com/sparrownova/snova ~/snova-repo
+$ git clone https://github.com/frappenova/snova ~/snova-repo
 $ pip3 install -e ~/snova-repo
 $ snova src
-/Users/sparrow/snova-repo
+/Users/frappe/snova-repo
 ```
 
 To clear up the editable install and switch to a stable version of snova, uninstall via pip and delete the corresponding egg file from the python path.
@@ -229,10 +229,10 @@ To clear up the editable install and switch to a stable version of snova, uninst
 ```sh
 # Delete snova installed in editable install
 $ rm -r $(find ~ -name '*.egg-info')
-$ pip3 uninstall sparrow-snova
+$ pip3 uninstall frappe-snova
 
 # Install latest released version of snova
-$ pip3 install -U sparrow-snova
+$ pip3 install -U frappe-snova
 ```
 
 To confirm the switch, check the output of `snova src`. It should change from something like `$HOME/snova-repo` to `/usr/local/lib/python3.6/dist-packages` and stop the editable install warnings from getting triggered at every command.
@@ -242,9 +242,9 @@ To confirm the switch, check the output of `snova src`. It should change from so
 
 Snova's version information can be accessed via `snova.VERSION` in the package's __init__.py file. Eversince the v5.0 release, we've started publishing releases on GitHub, and PyPI.
 
-GitHub: https://github.com/sparrownova/snova/releases
+GitHub: https://github.com/frappenova/snova/releases
 
-PyPI: https://pypi.org/project/sparrow-snova
+PyPI: https://pypi.org/project/frappe-snova
 
 
 From v5.3.0, we partially automated the release process using [@semantic-release](.github/workflows/release.yml). Under this new pipeline, we do the following steps to make a release:
@@ -256,7 +256,7 @@ This triggers a GitHub Action job that generates a bump commit, drafts and gener
 
 The intermediate `staging` branch exists to mediate the `snova.VERSION` conflict that would arise while merging `develop` and stable. On develop, the version has to be manually updated (for major release changes). The version tag plays a role in deciding when checks have to be made for new Snova releases.
 
-> Note: We may want to kill the convention of separate branches for different version releases of Snova. We don't need to maintain this the way we do for Sparrow & SHOPPER. A single branch named `stable` would sustain.
+> Note: We may want to kill the convention of separate branches for different version releases of Snova. We don't need to maintain this the way we do for Frappe & SHOPPER. A single branch named `stable` would sustain.
 
 ## License
 

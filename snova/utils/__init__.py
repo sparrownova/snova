@@ -24,7 +24,7 @@ from snova.exceptions import (
 logger = logging.getLogger(PROJECT_NAME)
 paths_in_app = ("hooks.py", "modules.txt", "patches.txt")
 paths_in_snova = ("apps", "sites", "config", "logs", "config/pids")
-sudoers_file = "/etc/sudoers.d/sparrow"
+sudoers_file = "/etc/sudoers.d/frappe"
 UNSET_ARG = object()
 
 
@@ -38,29 +38,29 @@ def is_snova_directory(directory=os.path.curdir):
 	return is_snova
 
 
-def is_sparrow_app(directory: str) -> bool:
-	is_sparrow_app = True
+def is_frappe_app(directory: str) -> bool:
+	is_frappe_app = True
 
 	for folder in paths_in_app:
-		if not is_sparrow_app:
+		if not is_frappe_app:
 			break
 
 		path = glob(os.path.join(directory, "**", folder))
-		is_sparrow_app = is_sparrow_app and path
+		is_frappe_app = is_frappe_app and path
 
-	return bool(is_sparrow_app)
+	return bool(is_frappe_app)
 
 
 @lru_cache(maxsize=None)
-def is_valid_sparrow_branch(sparrow_path: str, sparrow_branch: str):
+def is_valid_frappe_branch(frappe_path: str, frappe_branch: str):
 	"""Check if a branch exists in a repo. Throws InvalidRemoteException if branch is not found
 
 	Uses native git command to check for branches on a remote.
 
-	:param sparrow_path: git url
-	:type sparrow_path: str
-	:param sparrow_branch: branch to check
-	:type sparrow_branch: str
+	:param frappe_path: git url
+	:type frappe_path: str
+	:param frappe_branch: branch to check
+	:type frappe_branch: str
 	:raises InvalidRemoteException: branch for this repo doesn't exist
 	"""
 	from git.cmd import Git
@@ -68,15 +68,15 @@ def is_valid_sparrow_branch(sparrow_path: str, sparrow_branch: str):
 
 	g = Git()
 
-	if sparrow_branch:
+	if frappe_branch:
 		try:
-			res = g.ls_remote("--heads", "--tags", sparrow_path, sparrow_branch)
+			res = g.ls_remote("--heads", "--tags", frappe_path, frappe_branch)
 			if not res:
 				raise InvalidRemoteException(
-					f"Invalid branch or tag: {sparrow_branch} for the remote {sparrow_path}"
+					f"Invalid branch or tag: {frappe_branch} for the remote {frappe_path}"
 				)
 		except GitCommandError as e:
-			raise InvalidRemoteException(f"Invalid sparrow path: {sparrow_path}") from e
+			raise InvalidRemoteException(f"Invalid frappe path: {frappe_path}") from e
 
 
 def log(message, level=0, no_log=False, stderr=False):
@@ -113,7 +113,7 @@ def check_latest_version():
 	from semantic_version import Version
 
 	try:
-		pypi_request = requests.get("https://pypi.org/pypi/sparrow-snova/json")
+		pypi_request = requests.get("https://pypi.org/pypi/frappe-snova/json")
 	except Exception:
 		# Exceptions thrown are defined in requests.exceptions
 		# ignore checking on all Exceptions
@@ -229,7 +229,7 @@ def is_root():
 	return os.getuid() == 0
 
 
-def run_sparrow_cmd(*args, **kwargs):
+def run_frappe_cmd(*args, **kwargs):
 	from snova.cli import from_command_line
 	from snova.utils.snova import get_env_cmd
 
@@ -244,7 +244,7 @@ def run_sparrow_cmd(*args, **kwargs):
 		stderr = stdout = None
 
 	p = subprocess.Popen(
-		(f, "-m", "sparrow.utils.snova_helper", "sparrow") + args,
+		(f, "-m", "frappe.utils.snova_helper", "frappe") + args,
 		cwd=sites_dir,
 		stdout=stdout,
 		stderr=stderr,
@@ -383,8 +383,8 @@ def find_parent_snova(path: str) -> str:
 		return find_parent_snova(parent_dir)
 
 
-def get_env_sparrow_commands(snova_path=".") -> List:
-	"""Caches all available commands (even custom apps) via Sparrow
+def get_env_frappe_commands(snova_path=".") -> List:
+	"""Caches all available commands (even custom apps) via Frappe
 	Default caching behaviour: generated the first time any command (for a specific snova directory)
 	"""
 	from snova.utils.snova import get_env_cmd
@@ -395,7 +395,7 @@ def get_env_sparrow_commands(snova_path=".") -> List:
 	try:
 		return json.loads(
 			get_cmd_output(
-				f"{python} -m sparrow.utils.snova_helper get-sparrow-commands", cwd=sites_path
+				f"{python} -m frappe.utils.snova_helper get-frappe-commands", cwd=sites_path
 			)
 		)
 
@@ -411,14 +411,14 @@ def find_org(org_repo):
 
 	org_repo = org_repo[0]
 
-	for org in ["sparrow", "shopper"]:
+	for org in ["frappe", "shopper"]:
 		res = requests.head(f"https://api.github.com/repos/{org}/{org_repo}")
 		if res.status_code in (400, 403):
 			res = requests.head(f"https://github.com/{org}/{org_repo}")
 		if res.ok:
 			return org, org_repo
 
-	raise InvalidRemoteException(f"{org_repo} not found in sparrow or shopper")
+	raise InvalidRemoteException(f"{org_repo} not found in frappe or shopper")
 
 
 def fetch_details_from_tag(_tag: str) -> Tuple[str, str, str]:
@@ -497,10 +497,10 @@ def get_traceback() -> str:
 class _dict(dict):
 	"""dict like object that exposes keys as attributes"""
 
-	# snova port of sparrow._dict
+	# snova port of frappe._dict
 	def __getattr__(self, key):
 		ret = self.get(key)
-		# "__deepcopy__" exception added to fix sparrow#14833 via DFP
+		# "__deepcopy__" exception added to fix frappe#14833 via DFP
 		if not ret and key.startswith("__") and key != "__deepcopy__":
 			raise AttributeError()
 		return ret
@@ -526,15 +526,15 @@ class _dict(dict):
 def get_cmd_from_sysargv():
 	"""Identify and segregate tokens to options and command
 
-	For Command: `snova --profile --site sparrowframework.com migrate --no-backup`
-	sys.argv: ["/home/sparrow/.local/bin/snova", "--profile", "--site", "sparrowframework.com", "migrate", "--no-backup"]
+	For Command: `snova --profile --site frappeframework.com migrate --no-backup`
+	sys.argv: ["/home/frappe/.local/bin/snova", "--profile", "--site", "frappeframework.com", "migrate", "--no-backup"]
 	Actual command run: migrate
 
 	"""
-	# context is passed as options to sparrow's snova_helper
+	# context is passed as options to frappe's snova_helper
 	from snova.snova import Snova
 
-	sparrow_context = _dict(params={"--site"}, flags={"--verbose", "--profile", "--force"})
+	frappe_context = _dict(params={"--site"}, flags={"--verbose", "--profile", "--force"})
 	cmd_from_ctx = None
 	sys_argv = sys.argv[1:]
 	skip_next = False
@@ -544,10 +544,10 @@ def get_cmd_from_sysargv():
 			skip_next = False
 			continue
 
-		if arg in sparrow_context.flags:
+		if arg in frappe_context.flags:
 			continue
 
-		elif arg in sparrow_context.params:
+		elif arg in frappe_context.params:
 			skip_next = True
 			continue
 

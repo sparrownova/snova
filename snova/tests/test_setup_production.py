@@ -56,7 +56,7 @@ class TestSetupProduction(TestSnovaBase):
 			f = f.read()
 
 			for key in (
-				f"upstream {snova_name}-sparrow",
+				f"upstream {snova_name}-frappe",
 				f"upstream {snova_name}-socketio-server",
 			):
 				self.assertTrue(key in f)
@@ -68,7 +68,7 @@ class TestSetupProduction(TestSnovaBase):
 		)
 
 	def assert_sudoers(self, user):
-		sudoers_file = "/etc/sudoers.d/sparrow"
+		sudoers_file = "/etc/sudoers.d/frappe"
 		service = which("service")
 		nginx = which("nginx")
 
@@ -100,7 +100,7 @@ class TestSetupProduction(TestSnovaBase):
 			f = f.read()
 
 			tests = [
-				f"program:{snova_name}-sparrow-web",
+				f"program:{snova_name}-frappe-web",
 				f"program:{snova_name}-redis-cache",
 				f"program:{snova_name}-redis-queue",
 				f"group:{snova_name}-web",
@@ -114,20 +114,20 @@ class TestSetupProduction(TestSnovaBase):
 			if use_rq:
 				tests.extend(
 					[
-						f"program:{snova_name}-sparrow-schedule",
-						f"program:{snova_name}-sparrow-default-worker",
-						f"program:{snova_name}-sparrow-short-worker",
-						f"program:{snova_name}-sparrow-long-worker",
+						f"program:{snova_name}-frappe-schedule",
+						f"program:{snova_name}-frappe-default-worker",
+						f"program:{snova_name}-frappe-short-worker",
+						f"program:{snova_name}-frappe-long-worker",
 					]
 				)
 
 			else:
 				tests.extend(
 					[
-						f"program:{snova_name}-sparrow-workerbeat",
-						f"program:{snova_name}-sparrow-worker",
-						f"program:{snova_name}-sparrow-longjob-worker",
-						f"program:{snova_name}-sparrow-async-worker",
+						f"program:{snova_name}-frappe-workerbeat",
+						f"program:{snova_name}-frappe-worker",
+						f"program:{snova_name}-frappe-longjob-worker",
+						f"program:{snova_name}-frappe-async-worker",
 					]
 				)
 
@@ -143,7 +143,7 @@ class TestSetupProduction(TestSnovaBase):
 			out = get_cmd_output("supervisorctl status")
 
 		tests = [
-			r"{snova_name}-web:{snova_name}-sparrow-web[\s]+RUNNING",
+			r"{snova_name}-web:{snova_name}-frappe-web[\s]+RUNNING",
 			# Have commented for the time being. Needs to be uncommented later on. Snova is failing on travis because of this.
 			# It works on one snova and fails on another.giving FATAL or BACKOFF (Exited too quickly (process log may have details))
 			# "{snova_name}-web:{snova_name}-node-socketio[\s]+RUNNING",
@@ -154,20 +154,20 @@ class TestSetupProduction(TestSnovaBase):
 		if use_rq:
 			tests.extend(
 				[
-					r"{snova_name}-workers:{snova_name}-sparrow-schedule[\s]+RUNNING",
-					r"{snova_name}-workers:{snova_name}-sparrow-default-worker-0[\s]+RUNNING",
-					r"{snova_name}-workers:{snova_name}-sparrow-short-worker-0[\s]+RUNNING",
-					r"{snova_name}-workers:{snova_name}-sparrow-long-worker-0[\s]+RUNNING",
+					r"{snova_name}-workers:{snova_name}-frappe-schedule[\s]+RUNNING",
+					r"{snova_name}-workers:{snova_name}-frappe-default-worker-0[\s]+RUNNING",
+					r"{snova_name}-workers:{snova_name}-frappe-short-worker-0[\s]+RUNNING",
+					r"{snova_name}-workers:{snova_name}-frappe-long-worker-0[\s]+RUNNING",
 				]
 			)
 
 		else:
 			tests.extend(
 				[
-					r"{snova_name}-workers:{snova_name}-sparrow-workerbeat[\s]+RUNNING",
-					r"{snova_name}-workers:{snova_name}-sparrow-worker[\s]+RUNNING",
-					r"{snova_name}-workers:{snova_name}-sparrow-longjob-worker[\s]+RUNNING",
-					r"{snova_name}-workers:{snova_name}-sparrow-async-worker[\s]+RUNNING",
+					r"{snova_name}-workers:{snova_name}-frappe-workerbeat[\s]+RUNNING",
+					r"{snova_name}-workers:{snova_name}-frappe-worker[\s]+RUNNING",
+					r"{snova_name}-workers:{snova_name}-frappe-longjob-worker[\s]+RUNNING",
+					r"{snova_name}-workers:{snova_name}-frappe-async-worker[\s]+RUNNING",
 				]
 			)
 

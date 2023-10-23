@@ -15,10 +15,10 @@ from snova.snova import Snova
 
 PYTHON_VER = sys.version_info
 
-SPARROW_BRANCH = "version-13-hotfix"
+FRAPPE_BRANCH = "version-13-hotfix"
 if PYTHON_VER.major == 3:
 	if PYTHON_VER.minor >= 10:
-		SPARROW_BRANCH = "develop"
+		FRAPPE_BRANCH = "develop"
 
 
 class TestSnovaBase(unittest.TestCase):
@@ -55,7 +55,7 @@ class TestSnovaBase(unittest.TestCase):
 	def assert_folders(self, snova_name):
 		for folder in paths_in_snova:
 			self.assert_exists(snova_name, folder)
-		self.assert_exists(snova_name, "apps", "sparrow")
+		self.assert_exists(snova_name, "apps", "frappe")
 
 	def assert_virtual_env(self, snova_name):
 		snova_path = os.path.abspath(snova_name)
@@ -100,11 +100,11 @@ class TestSnovaBase(unittest.TestCase):
 
 	def init_snova(self, snova_name, **kwargs):
 		self.snovaes.append(snova_name)
-		sparrow_tmp_path = "/tmp/sparrow"
+		frappe_tmp_path = "/tmp/frappe"
 
-		if not os.path.exists(sparrow_tmp_path):
+		if not os.path.exists(frappe_tmp_path):
 			exec_cmd(
-				f"git clone https://github.com/sparrownova/sparrow -b {SPARROW_BRANCH} --depth 1 --origin upstream {sparrow_tmp_path}"
+				f"git clone https://github.com/frappenova/frappe -b {FRAPPE_BRANCH} --depth 1 --origin upstream {frappe_tmp_path}"
 			)
 
 		kwargs.update(
@@ -112,15 +112,15 @@ class TestSnovaBase(unittest.TestCase):
 				python=sys.executable,
 				no_procfile=True,
 				no_backups=True,
-				sparrow_path=sparrow_tmp_path,
+				frappe_path=frappe_tmp_path,
 			)
 		)
 
 		if not os.path.exists(os.path.join(self.snovaes_path, snova_name)):
 			init(snova_name, **kwargs)
 			exec_cmd(
-				"git remote set-url upstream https://github.com/sparrownova/sparrow",
-				cwd=os.path.join(self.snovaes_path, snova_name, "apps", "sparrow"),
+				"git remote set-url upstream https://github.com/frappenova/frappe",
+				cwd=os.path.join(self.snovaes_path, snova_name, "apps", "frappe"),
 			)
 
 	def file_exists(self, path):

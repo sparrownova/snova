@@ -11,10 +11,10 @@ from snova.utils import (
 	exec_cmd,
 	get_process_manager,
 	log,
-	run_sparrow_cmd,
+	run_frappe_cmd,
 	sudoers_file,
 	which,
-	is_valid_sparrow_branch,
+	is_valid_frappe_branch,
 )
 from snova.utils.snova import build_assets, clone_apps_from
 from snova.utils.render import job
@@ -26,8 +26,8 @@ def init(
 	apps_path=None,
 	no_procfile=False,
 	no_backups=False,
-	sparrow_path=None,
-	sparrow_branch=None,
+	frappe_path=None,
+	frappe_branch=None,
 	verbose=False,
 	clone_from=None,
 	skip_redis_config_generation=False,
@@ -43,7 +43,7 @@ def init(
 	* setup env for the snova
 	* setup config (dir/pids/redis/procfile) for the snova
 	* setup patches.txt for snova
-	* clone & install sparrow
+	* clone & install frappe
 	        * install python & node dependencies
 	        * build assets
 	* setup backups crontab
@@ -74,11 +74,11 @@ def init(
 
 	# remote apps
 	else:
-		sparrow_path = sparrow_path or "https://github.com/sparrownova/sparrow.git"
-		is_valid_sparrow_branch(sparrow_path=sparrow_path, sparrow_branch=sparrow_branch)
+		frappe_path = frappe_path or "https://github.com/frappenova/frappe.git"
+		is_valid_frappe_branch(frappe_path=frappe_path, frappe_branch=frappe_branch)
 		get_app(
-			sparrow_path,
-			branch=sparrow_branch,
+			frappe_path,
+			branch=frappe_branch,
 			snova_path=path,
 			skip_assets=True,
 			verbose=verbose,
@@ -93,7 +93,7 @@ def init(
 	if install_app:
 		get_app(
 			install_app,
-			branch=sparrow_branch,
+			branch=frappe_branch,
 			snova_path=path,
 			skip_assets=True,
 			verbose=verbose,
@@ -120,8 +120,8 @@ def setup_sudoers(user):
 		if set_permissions:
 			os.chmod("/etc/sudoers", 0o440)
 
-	template = snova.config.env().get_template("sparrow_sudoers")
-	sparrow_sudoers = template.render(
+	template = snova.config.env().get_template("frappe_sudoers")
+	frappe_sudoers = template.render(
 		**{
 			"user": user,
 			"service": which("service"),
@@ -132,7 +132,7 @@ def setup_sudoers(user):
 	)
 
 	with open(sudoers_file, "w") as f:
-		f.write(sparrow_sudoers)
+		f.write(frappe_sudoers)
 
 	os.chmod(sudoers_file, 0o440)
 	log(f"Sudoers was set up for user {user}", level=1)
@@ -161,11 +161,11 @@ def start(no_dev=False, concurrency=None, procfile=None, no_prefix=False, procma
 
 
 def migrate_site(site, snova_path="."):
-	run_sparrow_cmd("--site", site, "migrate", snova_path=snova_path)
+	run_frappe_cmd("--site", site, "migrate", snova_path=snova_path)
 
 
 def backup_site(site, snova_path="."):
-	run_sparrow_cmd("--site", site, "backup", snova_path=snova_path)
+	run_frappe_cmd("--site", site, "backup", snova_path=snova_path)
 
 
 def backup_all_sites(snova_path="."):
@@ -175,21 +175,21 @@ def backup_all_sites(snova_path="."):
 		backup_site(site, snova_path=snova_path)
 
 
-def fix_prod_setup_perms(snova_path=".", sparrow_user=None):
+def fix_prod_setup_perms(snova_path=".", frappe_user=None):
 	from glob import glob
 	from snova.snova import Snova
 
-	sparrow_user = sparrow_user or Snova(snova_path).conf.get("sparrow_user")
+	frappe_user = frappe_user or Snova(snova_path).conf.get("frappe_user")
 
-	if not sparrow_user:
-		print("sparrow user not set")
+	if not frappe_user:
+		print("frappe user not set")
 		sys.exit(1)
 
 	globs = ["logs/*", "config/*"]
 	for glob_name in globs:
 		for path in glob(glob_name):
-			uid = pwd.getpwnam(sparrow_user).pw_uid
-			gid = grp.getgrnam(sparrow_user).gr_gid
+			uid = pwd.getpwnam(frappe_user).pw_uid
+			gid = grp.getgrnam(frappe_user).gr_gid
 			os.chown(path, uid, gid)
 
 
@@ -199,7 +199,7 @@ def setup_fonts():
 	if os.path.exists("/etc/fonts_backup"):
 		return
 
-	exec_cmd("git clone https://github.com/sparrownova/fonts.git", cwd="/tmp")
+	exec_cmd("git clone https://github.com/frappenova/fonts.git", cwd="/tmp")
 	os.rename("/etc/fonts", "/etc/fonts_backup")
 	os.rename("/usr/share/fonts", "/usr/share/fonts_backup")
 	os.rename(os.path.join(fonts_path, "etc_fonts"), "/etc/fonts")

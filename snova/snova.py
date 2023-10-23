@@ -17,11 +17,11 @@ from snova.utils import (
 	paths_in_snova,
 	exec_cmd,
 	is_snova_directory,
-	is_sparrow_app,
+	is_frappe_app,
 	get_cmd_output,
 	get_git_version,
 	log,
-	run_sparrow_cmd,
+	run_frappe_cmd,
 )
 from snova.utils.snova import (
 	validate_app_installed_on_sites,
@@ -139,7 +139,7 @@ class Snova(Base, Validator):
 	@step(title="Building Snova Assets", success="Snova Assets Built")
 	def build(self):
 		# build assets & stuff
-		run_sparrow_cmd("build", snova_path=self.name)
+		run_frappe_cmd("build", snova_path=self.name)
 
 	@step(title="Reloading Snova Processes", success="Snova Processes Reloaded")
 	def reload(self, web=False, supervisor=True, systemd=True, _raise=True):
@@ -193,10 +193,10 @@ class SnovaApps(MutableSequence):
 			required = []
 		if self.apps and not os.path.exists(self.states_path):
 			# idx according to apps listed in apps.txt (backwards compatibility)
-			# Keeping sparrow as the first app.
-			if "sparrow" in self.apps:
-				self.apps.remove("sparrow")
-				self.apps.insert(0, "sparrow")
+			# Keeping frappe as the first app.
+			if "frappe" in self.apps:
+				self.apps.remove("frappe")
+				self.apps.insert(0, "frappe")
 				with open(self.snova.apps_txt, "w") as f:
 					f.write("\n".join(self.apps))
 
@@ -277,10 +277,10 @@ class SnovaApps(MutableSequence):
 			self.apps = [
 				x
 				for x in os.listdir(os.path.join(self.snova.name, "apps"))
-				if is_sparrow_app(os.path.join(self.snova.name, "apps", x))
+				if is_frappe_app(os.path.join(self.snova.name, "apps", x))
 			]
-			self.apps.remove("sparrow")
-			self.apps.insert(0, "sparrow")
+			self.apps.remove("frappe")
+			self.apps.insert(0, "frappe")
 		except FileNotFoundError:
 			self.apps = []
 
@@ -345,7 +345,7 @@ class SnovaSetup(Base):
 		"""Setup env folder
 		- create env if not exists
 		- upgrade env pip
-		- install sparrow python dependencies
+		- install frappe python dependencies
 		"""
 		import snova.cli
 		import click
@@ -354,7 +354,7 @@ class SnovaSetup(Base):
 
 		click.secho("Setting Up Environment", fg="yellow")
 
-		sparrow = os.path.join(self.snova.name, "apps", "sparrow")
+		frappe = os.path.join(self.snova.name, "apps", "frappe")
 		quiet_flag = "" if verbose else "--quiet"
 
 		if not os.path.exists(self.snova.python):
@@ -364,9 +364,9 @@ class SnovaSetup(Base):
 		self.pip()
 		self.wheel()
 
-		if os.path.exists(sparrow):
+		if os.path.exists(frappe):
 			self.run(
-				f"{self.snova.python} -m pip install {quiet_flag} --upgrade -e {sparrow}",
+				f"{self.snova.python} -m pip install {quiet_flag} --upgrade -e {frappe}",
 				cwd=self.snova.name,
 			)
 
@@ -433,7 +433,7 @@ class SnovaSetup(Base):
 		from crontab import CronTab
 
 		snova_dir = os.path.abspath(self.snova.name)
-		user = self.snova.conf.get("sparrow_user")
+		user = self.snova.conf.get("frappe_user")
 		logfile = os.path.join(snova_dir, "logs", "backup.log")
 		system_crontab = CronTab(user=user)
 		backup_command = f"cd {snova_dir} && {sys.argv[0]} --verbose --site all backup"
